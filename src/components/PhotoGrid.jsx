@@ -163,18 +163,17 @@ export default function PhotoGrid({ photos, onPhotoClick }) {
     // behavior to bypass CORS. We open them in new tabs/windows.
     for (const photo of selected) {
       try {
-        const a = document.createElement('a');
-        a.href = photo.url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        // HTML5 download attribute is often ignored for cross-origin, 
-        // but adding it in case the browser respects it
-        a.download = photo.file_name || `photo_${photo.id}.jpg`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = photo.url;
+        document.body.appendChild(iframe);
         
-        // Delay to prevent the browser's pop-up blocker from stopping multiple tabs
+        // Remove the iframe after download gives time to initiate
+        setTimeout(() => {
+          document.body.removeChild(iframe);
+        }, 5000); // 5 seconds is usually enough for the headers to trigger a download
+        
+        // Delay between initiating downloads
         await new Promise(r => setTimeout(r, 600));
       } catch (err) {
         console.error(`Failed to trigger download for ${photo.file_name}:`, err);
