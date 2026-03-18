@@ -20,20 +20,40 @@ export default function HomePage() {
   const [loadProgress, setLoadProgress] = useState(0);
 
   useEffect(() => {
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += Math.random() * 15;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(interval);
-        // Slide up after a short delay once it hits 100%
-        setTimeout(() => setSiteLoaded(true), 500); 
-      }
-      setLoadProgress(progress);
-    }, 150);
+    // Collect all critical images for the homepage, including backgrounds and mobile variants
+    const imageUrls = [
+      '/1.png', '/2.png', '/3.png',
+      '/4m.png', '/3m.png', '/2m.png',
+      '/COULDB.png', '/Frame.png', '/Background.png',
+      ...perfectMoments.map(p => p.thumbnail_url || p.url)
+    ];
 
-    return () => clearInterval(interval);
-  }, []);
+    const uniqueUrls = [...new Set(imageUrls)];
+    let loadedCount = 0;
+    const total = uniqueUrls.length;
+
+    if (total === 0) {
+      setLoadProgress(100);
+      setTimeout(() => setSiteLoaded(true), 500);
+      return;
+    }
+
+    const handleLoad = () => {
+      loadedCount++;
+      setLoadProgress(Math.round((loadedCount / total) * 100));
+      if (loadedCount >= total) {
+        // Wait a brief moment after 100% before sliding up
+        setTimeout(() => setSiteLoaded(true), 600); 
+      }
+    };
+
+    uniqueUrls.forEach(url => {
+      const img = new Image();
+      img.onload = handleLoad;
+      img.onerror = handleLoad; // Count errors so we don't get stuck
+      img.src = url;
+    });
+  }, [perfectMoments]);
 
   const [perfectMoments] = useState(() => {
     // Basic randomness: sort randomly then slice on initial render only
