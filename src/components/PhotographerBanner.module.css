@@ -1,6 +1,3 @@
-/* Cinzel — elegant display serif */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
-
 /* ── Hero — Parallax container ── */
 .hero {
   position: relative;
@@ -92,64 +89,62 @@
 
 /* ── Groom name ── */
 .groomName {
-  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  font-family: 'CustomTextFont', sans-serif;
   font-size: clamp(52px, 9vw, 92px);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  color: #ffffff;
+  font-weight: normal;
+  color: #ededd5;
   line-height: 1.0;
   margin: 2px 0;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(161, 130, 188, 0.5);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* ── "weds" cursive script ── */
 .wedsScript {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'CustomTextFont', sans-serif;
   font-size: clamp(22px, 4vw, 38px);
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.75);
-  letter-spacing: 0.06em;
+  font-weight: normal;
+  color: #ededd5;
   margin: -6px 0;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25), 0 0 30px rgba(161, 130, 188, 0.4);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
 }
 
 /* ── Bride name ── */
 .brideName {
-  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  font-family: 'CustomTextFont', sans-serif;
   font-size: clamp(52px, 9vw, 92px);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  color: #ffffff;
+  font-weight: normal;
+  color: #ededd5;
   line-height: 1.0;
   margin: 2px 0;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(161, 130, 188, 0.5);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* ── Date ── */
 .dateText {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.22em;
-  color: rgba(255, 255, 255, 0.7);
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  color: #ededd5;
   margin: 4px 0;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.2), 0 0 20px rgba(161, 130, 188, 0.3);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* ── Photographer line ── */
 .photographerLine {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.5);
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  color: #ededd5;
+  opacity: 0.8;
   margin-top: 8px;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 0 16px rgba(161, 130, 188, 0.25);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 .photographerLine strong {
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 400;
+  color: #ededd5;
+  font-weight: normal;
+  opacity: 1;
 }
 
 /* ── Scroll down button ── */
@@ -166,19 +161,22 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.6);
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  color: #ededd5;
+  opacity: 0.7;
   transition: color 0.3s, transform 0.3s, opacity 0.4s ease;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 .scrollDown:hover {
-  color: rgba(255, 255, 255, 0.9);
+  color: #ededd5;
+  opacity: 1;
   transform: translateX(-50%) translateY(3px);
 }
 .scrollArrow {
-  font-size: 16px;
+  font-size: 20px;
   animation: scrollBounce 2s ease-in-out infinite;
 }
 @keyframes scrollBounce {

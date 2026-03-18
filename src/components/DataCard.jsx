@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom';
 import styles from './DataCard.module.css';
 
 /**
- * DataCard — reusable sub-event card
+ * DataCard — 3-layer framed sub-event card
+ *
+ * Layer 1: Square cover image
+ * Layer 2: Text overlay (event name + photo count)
+ * Layer 3: Frame.png ornamental border
  *
  * Props:
  *   to       – route to navigate (e.g. "/event/haldi")
- *   image    – cover image URL (Google Drive lh3 thumbnail)
+ *   image    – cover image URL
  *   label    – event name
  *   count    – photo count
- *   icon     – optional emoji icon
+ *   icon     – optional emoji icon (unused visually, kept for API compat)
  *   delay    – optional animation delay in seconds
  */
 export default function DataCard({ to, image, label, count, icon, delay = 0 }) {
@@ -41,8 +45,8 @@ export default function DataCard({ to, image, label, count, icon, delay = 0 }) {
       style={{ transitionDelay: `${delay}s` }}
       ref={cardRef}
     >
-      {/* Image */}
-      <div className={styles.imageWrap}>
+      <div className={styles.container}>
+        {/* Layer 1: Square image */}
         {image ? (
           <img
             src={image}
@@ -56,13 +60,20 @@ export default function DataCard({ to, image, label, count, icon, delay = 0 }) {
             <span>{icon || '📷'}</span>
           </div>
         )}
-      </div>
 
-      {/* Info */}
-      <div className={styles.info}>
-        {icon && <span className={styles.icon}>{icon}</span>}
-        <h3 className={styles.name}>{label}</h3>
-        <p className={styles.count}>{count ?? 0} photos</p>
+        {/* Layer 2: Text overlay */}
+        <div className={styles.textOverlay}>
+          <h3 className={styles.name}>{label}</h3>
+          <p className={styles.count}>{count ?? 0} photos</p>
+        </div>
+
+        {/* Layer 3: Ornamental frame */}
+        <img
+          src="/Frame.png"
+          alt=""
+          className={styles.frame}
+          aria-hidden="true"
+        />
       </div>
     </Link>
   );

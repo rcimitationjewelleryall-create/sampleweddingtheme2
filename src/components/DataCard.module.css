@@ -1,84 +1,109 @@
 /* ══════════════════════════════════════════════════
-   DataCard — Reusable Sub-event Card
+   DataCard — 3-layer framed card
+   Layer 1: Square cover image
+   Layer 2: Text overlay (event name + count)
+   Layer 3: Frame.png ornamental border
    ══════════════════════════════════════════════════ */
 
 .card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  overflow: hidden;
+  display: block;
+  position: relative;
   text-decoration: none;
   color: inherit;
-  background: transparent;
+  border-radius: 0;
+  overflow: visible;
 
-  /* Start hidden */
+  /* Start hidden for scroll reveal */
   opacity: 0;
   transform: translateY(40px) scale(0.95);
   transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
               transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Appear when scrolled into view */
 .card.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
-/* ── Image ── */
-.imageWrap {
+/* ── Container: forces square aspect ratio ── */
+.container {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  padding-bottom: 100%; /* 1:1 square */
 }
+
+/* ── Layer 1: Cover image ── */
 .image {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
 .card:hover .image {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
+
 .placeholder {
-  width: 100%;
-  padding-bottom: 60%;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--surface2);
   font-size: 48px;
-  position: relative;
-}
-.placeholder span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
-/* ── Info ── */
-.info {
-  padding: 14px 18px;
+/* ── Layer 2: Text overlay ── */
+.textOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
   text-align: center;
+  gap: 4px;
+  padding: 15%;
+  /* Subtle dark vignette so text is readable over any image */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.15) 60%,
+    transparent 100%
+  );
 }
-.icon {
-  font-size: 20px;
-  line-height: 1;
-}
+
 .name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
+  font-size: clamp(20px, 4vw, 28px);
   font-weight: 600;
-  color: var(--royal-blue);
-  letter-spacing: 0.01em;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5),
+               0 0 24px rgba(161, 130, 188, 0.4);
 }
+
 .count {
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 400;
-  color: var(--gold-deep);
-  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.1em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Layer 3: Ornamental frame ── */
+.frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
 }

@@ -1,11 +1,19 @@
 /* ══════════════════════════════════════════════════
    HomePage Styles
    ══════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'CustomTextFont';
+  src: url('/Text.otf');
+}
 
-/* ── Page Wrapper with gradient background ── */
+/* ── Page Wrapper with repetitive wb.png ── */
 .pageWrapper {
-  background: linear-gradient(135deg, #fee4f5, #a182bc);
-  min-height: 100vh;
+  /* background-image: url('/wb.jpg'); */
+  background-repeat: no-repeat;
+  background-position: top left;
+  /* background-size: cover/100% causes zoom. Leave it intrinsic or scale down */
+  background-size: 100%;
+  /* min-height: 100vh; */
 }
 
 /* ── Find My Photos Section ── */
@@ -14,14 +22,176 @@
   z-index: 3;
   padding: 0 24px 32px;
   text-align: center;
-  background: #ffffff;
+  background: transparent;
 }
 
-/* ── White background after 3rd section ── */
+/* ── Content wrapper after 3rd section ── */
 .whiteSection {
   position: relative;
   z-index: 3;
-  background: #ffffff;
+  background: transparent;
+}
+
+/* ── Site Loader ── */
+.siteLoader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #45a287;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  transform: translateY(0);
+}
+.siteLoader.hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.loaderNames {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: clamp(48px, 10vw, 92px);
+  color: #ededd5;
+  margin: 0;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.loaderWeds {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: clamp(24px, 5vw, 40px);
+  color: #ededd5;
+  margin: -10px 0;
+  display: block;
+}
+
+.loaderBarContainer {
+  width: 240px;
+  height: 4px;
+  background: rgba(237, 237, 213, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.loaderBarFill {
+  height: 100%;
+  background: #ededd5;
+  transition: width 0.2s ease-out;
+  width: 0%;
+}
+
+.loaderText {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 16px;
+  color: #ededd5;
+  margin-top: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Consolidated Moments Wrapper ── */
+.momentsWrapper {
+  width: 100vw;
+  background-image: url('/Background.png');
+  background-size: 400px 394px; /* Exact tile dimensions */
+  background-position: top left;
+  background-repeat: repeat; /* Repeats both directions */
+  position: relative;
+  z-index: 3;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+/* ── New Your Moments Section ── */
+.yourMomentsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  padding: 80px 24px;
+  margin-top: 50px; /* Requested margin above section */
+}
+
+.yourMomentsText {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 110px;
+  color: #ededd5;
+  text-align: center;
+  margin: 0 0 60px; 
+  line-height: 1;
+  z-index: 10;
+}
+
+.eventGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.eventCard {
+  width: 100%;
+}
+
+.carouselLink {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.carouselFrame {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* Use drop-shadow filter to trace the actual opaque pixels of the carved PNG frame */
+  filter: 
+    drop-shadow(-6px -6px 10px rgba(255, 255, 255, 0.4))
+    drop-shadow(6px 6px 10px rgba(0, 0, 0, 0.15));
+}
+
+.carouselInfo {
+  position: absolute;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  pointer-events: none;
+}
+
+.carouselTitle {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 42px;
+  color: #45a287;
+  margin: 0 0 4px 0;
+  line-height: 1;
+}
+
+.carouselCount {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 24px;
+  color: #45a287;
+  margin: 0;
+  line-height: 1;
+}
+
+.clickNote {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 16px;
+  color: #45a287;
+  opacity: 0.8;
+  margin-top: 8px;
+  font-style: italic;
 }
 
 /* ── Your Moments Section ── */
@@ -44,214 +214,481 @@
   background: linear-gradient(to right, transparent, var(--gold), transparent);
   opacity: 0.5;
 }
-.sectionLabel {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(24px, 4vw, 38px);
-  font-weight: 600;
-  font-style: italic;
-  color: var(--royal-blue);
-  white-space: nowrap;
-  letter-spacing: 0.01em;
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
-/* ── Card Grid ── */
+.sectionLabel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 4vw, 38px);
+  font-weight: 600;
+  font-style: italic;
+  color: #a080ba;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.shotBySub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: #cbb4db; /* Lighter shade of the primary accent */
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* ── Card Grid (legacy – kept for reference) ── */
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
 
-/* ── Individual Event Card ── */
-.eventCard {
+/* ══════════════════════════════════════════════════
+   Wheel Carousel
+   ══════════════════════════════════════════════════ */
+
+/* Tall scroll runway — height set inline via JS */
+.wheelRunway {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--cream);
-  border: 1.5px solid var(--border);
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.32s cubic-bezier(0.25,0.1,0.25,1);
-  box-shadow: 0 2px 16px rgba(122,2,50,0.06);
-
-  /* Scroll reveal — starts hidden */
-  opacity: 0;
-  transform: translateY(28px);
-}
-.eventCard.revealed,
-.eventCard[data-card].revealed {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.7s cubic-bezier(0.25,0.1,0.25,1), transform 0.7s cubic-bezier(0.25,0.1,0.25,1), border-color 0.28s, box-shadow 0.28s;
 }
 
-.eventCard:hover {
-  border-color: var(--gold);
-  box-shadow: 0 8px 36px rgba(122,2,50,0.16);
-  transform: translateY(-4px);
-}
-
-/* Corner accents */
-.cornerTL, .cornerBR {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  opacity: 0.4;
-}
-.cornerTL {
-  top: 8px;
-  left: 8px;
-  border-top: 1.5px solid var(--gold);
-  border-left: 1.5px solid var(--gold);
-}
-.cornerBR {
-  bottom: 8px;
-  right: 8px;
-  border-bottom: 1.5px solid var(--gold);
-  border-right: 1.5px solid var(--gold);
-}
-.eventCard:hover .cornerTL,
-.eventCard:hover .cornerBR {
-  opacity: 0.8;
-}
-
-/* Card image */
-.cardImgWrap {
-  position: relative;
-  width: 100%;
-  padding-bottom: 60%;
+/* Sticky viewport — stays pinned while runway scrolls */
+.wheelSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   overflow: hidden;
 }
-.cardImg {
+
+/* Layer 1: Cards */
+.wheelCardsLayer {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.eventCard:hover .cardImg {
-  transform: scale(1.05);
-}
-.cardImgPlaceholder {
-  position: absolute;
-  inset: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface2);
-  font-size: 48px;
-}
-.cardImgOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(58,1,24,0.5) 0%, transparent 60%);
 }
 
-/* Card text body */
-.cardBody {
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  text-align: center;
-}
-.cardIcon {
-  font-size: 22px;
-  line-height: 1;
-}
-.cardName {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--royal-blue);
-  letter-spacing: 0.01em;
-}
-.cardCount {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--gold-deep);
-  letter-spacing: 0.08em;
-}
-
-/* ── Thank You Section ── */
-.thankYouSection {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  height: 60vh;
-  overflow: hidden;
-}
-.thankYouBg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-.thankYouGradient {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(to bottom, transparent, #ffffff);
-  z-index: 1;
-  pointer-events: none;
-}
-.thankYouContent {
+/* Layer 2: Gradient mask — white edges with transparent window */
+.wheelGradientMask {
   position: absolute;
   inset: 0;
   z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    #ffffff 0%,
+    #ffffff 10%,
+    transparent 20%,
+    transparent 80%,
+    #ffffff 90%,
+    #ffffff 100%
+  );
+}
+
+/* Layer 3: UI — title, dots, arrow */
+.wheelUiLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px 16px;
+}
+
+/* 3D perspective stage — overflow visible so cards peek above/below */
+.wheelStage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  overflow: visible;
+}
+
+/* Individual carousel card */
+.wheelCard {
+  position: absolute;
+  width: 100%;
+  /* aspect-ratio: 1 / 1; */
+  border-radius: 0;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(122, 2, 50, 0.10), 0 2px 12px rgba(0,0,0,0.06);
+  transform-origin: center center;
+  will-change: transform, opacity;
+  transition: box-shadow 0.3s ease;
+}
+.wheelCard:hover {
+  box-shadow: 0 14px 52px rgba(122, 2, 50, 0.18), 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* Layer 1: Full square image */
+.wheelCardImage {
+  width: calc(100%-20px);
+  /* height: 100%; */
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: block;
+  margin: 10px;
+}
+
+/* Layer 2: Text overlay centered on image */
+.wheelCardTextOverlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 24px;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.30);
+  padding: 20px;
 }
-.thankYouLabel {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-deep);
-  margin-bottom: 12px;
-}
-.thankYouText {
+.wheelCardName {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(32px, 6vw, 56px);
+  font-size: 26px;
   font-weight: 600;
-  font-style: italic;
-  color: var(--royal-blue);
-  line-height: 1.15;
-  margin-bottom: 20px;
+  color: #fff;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
-.thankYouDivider {
+.wheelCardCount {
+  font-size: 13px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+}
+
+/* Layer 3: Frame.png overlay */
+.wheelCardFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Pagination dots */
+.wheelNav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  max-width: 280px;
-  margin: 0 auto 20px;
+  gap: 10px;
+  padding: 14px 0;
 }
-.thankYouSub {
-  font-size: 14px;
-  color: var(--text-muted);
+.wheelDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  /* background: var(--border); */
+  background: #a080ba;
+  transition: background 0.35s ease, transform 0.35s ease;
+}
+
+/* Scroll-down arrow */
+.wheelArrow {
+  padding-bottom: 10px;
+  color: var(--gold);
+  opacity: 0.7;
+  animation: wheelBounce 2s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+@keyframes wheelBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+
+
+/* ── Showcase Image Section (Overlapping) ── */
+.showcaseSection {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  /* Image aspect ratio is 2640:1120 (height is ~42.42% of width)
+     Top overlap: 30% of height = 12.73% of width
+     Bottom overlap: 20% of height = 8.48% of width */
+  margin-top: -12.73%; 
+  margin-bottom: -8.48%;
+}
+
+.showcaseBg {
+  display: block;
+  width: 100%;
+  height: auto; /* Shows the full image naturally */
+  object-fit: contain;
+}
+
+/* ── Perfect Moments Section ── */
+.perfectMomentsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  padding: 80px 24px;
+}
+
+.perfectMomentsText {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 110px;
+  color: #ededd5;
+  text-align: center;
+  margin: 0 0 60px;
+  line-height: 1;
+  z-index: 10;
+}
+
+.masonryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px; /* Same as carousel width without arrows */
+  padding: 0;
+  margin: 0 auto;
+  aspect-ratio: 27 / 16; /* Enforces the exact proportions seen in the sample */
+}
+
+.masonryItem {
+  width: 100%;
+  height: 100%;
+}
+
+/* Precise placement for the 5 bento grid items */
+.masonryItem:nth-child(1) { grid-column: 1; grid-row: 1 / 11; }
+.masonryItem:nth-child(2) { grid-column: 2; grid-row: 1 / 5; }
+.masonryItem:nth-child(3) { grid-column: 2; grid-row: 5 / 11; }
+.masonryItem:nth-child(4) { grid-column: 3; grid-row: 1 / 7; }
+.masonryItem:nth-child(5) { grid-column: 3; grid-row: 7 / 11; }
+
+.masonryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* Optional drop shadow */
+  transition: transform 0.3s ease;
+}
+
+/* ── Couple's Letter Section ── */
+.letterSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  padding: 80px 24px;
+}
+
+.letterSectionText {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 110px;
+  color: #ededd5;
+  text-align: center;
+  margin: 0 0 60px;
+  line-height: 1;
+  z-index: 10;
+}
+
+.letterContainer {
+  background: #ededd5;
+  width: 100%;
+  max-width: 1200px;
+  padding: 100px 140px;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  position: relative;
+  text-align: center;
+}
+
+.letterText {
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 42px; 
+  line-height: 1.6;
+  color: #268f74;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.quoteMarkLeft {
+  font-family: 'Georgia', serif;
+  font-size: 140px;
+  line-height: 0;
+  color: #268f74;
+  position: absolute;
+  top: 20px;
+  left: -80px;
+}
+
+.quoteMarkRight {
+  font-family: 'Georgia', serif;
+  font-size: 140px;
+  line-height: 0;
+  color: #268f74;
+  position: absolute;
+  bottom: -40px;
+  right: -80px;
+}
+
+.letterSignatures {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
   font-style: italic;
+  font-weight: 600;
+  color: #a080ba;
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .thankYouSection { height: 45vh; }
+  .carouselSideArrow { display: none; }
 }
 @media (max-width: 500px) {
+  .showcaseSection {
+    height: 350px;
+    margin-top: -105px; /* 30% of 350px */
+    margin-bottom: -70px; /* 20% of 350px */
+  }
+
+  .showcaseBg {
+    height: 100%;
+    object-fit: cover; /* Crops sides to show full height */
+  }
+
+  .yourMomentsSection {
+    padding: 40px 16px; 
+  }
+
+  .yourMomentsText {
+    font-size: 52px; 
+    margin-bottom: 40px;
+  }
+
+  .eventGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .eventCard {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .carouselTitle {
+    font-size: 26px; /* Reduced further to match card size */
+  }
+
+  .carouselCount {
+    font-size: 14px; /* Reduced further */
+  }
+
+  .perfectMomentsSection {
+    padding: 40px 16px;
+  }
+
+  .perfectMomentsText {
+    font-size: 52px;
+    margin-bottom: 40px;
+  }
+
+  .letterSection {
+    padding: 40px 16px;
+  }
+
+  .letterSectionText {
+    font-size: 52px;
+    margin-bottom: 40px;
+  }
+
+  .letterContainer {
+    width: 100%;
+    padding: 60px 40px;
+    border-radius: 16px;
+  }
+
+  .letterText {
+    font-size: 24px;
+  }
+
+  .quoteMarkLeft {
+    font-size: 80px;
+    top: 10px;
+    left: -20px;
+  }
+
+  .quoteMarkRight {
+    font-size: 80px;
+    bottom: -20px;
+    right: -20px;
+  }
+
+  .carouselContainer {
+    height: 420px; /* Shorter container to fit screen */
+  }
+
   .cardGrid {
     grid-template-columns: 1fr;
     gap: 18px;
   }
   .momentsSection { padding: 24px 16px 48px; }
+
+  /* Wheel carousel mobile */
+  .wheelUiLayer { padding: 24px 16px 12px; }
+  .wheelStage { max-width: 92%; }
+  .wheelCardName { font-size: 22px; }
+
+  /* Masonry Grid Mobile */
+  .masonryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 40vw);
+    width: 100%;
+    max-width: none;
+    padding: 0 16px;
+    gap: 12px;
+    aspect-ratio: auto;
+  }
+  .masonryItem {
+    margin-bottom: 0;
+  }
+  /* Mobile bento placement */
+  .masonryItem:nth-child(1) { grid-column: 1; grid-row: 1 / 3; }
+  .masonryItem:nth-child(2) { grid-column: 2; grid-row: 1 / 2; }
+  .masonryItem:nth-child(3) { grid-column: 2; grid-row: 2 / 3; }
+  .masonryItem:nth-child(4) { grid-column: 1; grid-row: 3 / 4; }
+  .masonryItem:nth-child(5) { grid-column: 2; grid-row: 3 / 4; }
+
+  /* Carousel mobile overrides */
+  .carouselCard { width: 260px; } /* Made smaller for mobile */
+  .carouselTitle { font-size: 32px; }
+  .carouselCount { font-size: 18px; }
+  .prevCard { transform: translateX(-90%) scale(0.8); }
+  .nextCard { transform: translateX(90%) scale(0.8); }
+  .hiddenCardLeft { transform: translateX(-150%) scale(0.6); }
+  .hiddenCardRight { transform: translateX(150%) scale(0.6); }
 }
+
+

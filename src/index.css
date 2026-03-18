@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 /* ── RESET & BASE ──────────────────────────────────────────── */
 *,
@@ -9,88 +9,69 @@
   padding: 0;
 }
 
-:root {
-  /* Royal Indian Wedding Palette — Maroon */
-  --royal-blue: #7a0232;
-  --royal-deep: #520122;
-  --orange: #e8753a;
-  --orange-light: #f4a06a;
-  --sage: #3d6b5c;
-  --sage-light: #5a8c77;
-  --cream: #f5edd8;
-  --cream-dark: #ede0c4;
-  --midnight: #3a0118;
-  --star: #f5edd8;
+@font-face {
+  font-family: 'CustomTextFont';
+  src: url('/Text.otf');
+}
 
-  /* Gold */
-  --gold: #c9a06a;
-  --gold-deep: #9a7040;
-  --gold-dim: rgba(201, 160, 106, 0.18);
-  --gold-glow: rgba(201, 160, 106, 0.35);
+:root {
+  /* Redefined Theme Colors */
+  --royal-blue: #ededd5; /* Used for headings and primary accents */
+  --royal-deep: #d5d5be;
+  
+  --sage: #45a287; /* Green accent */
+  --sage-light: #65b8a0;
+  
+  --cream: #ededd5; /* Cream base */
+  --cream-dark: #d5d5be;
+  --midnight: #45a287;
+  --star: #ededd5;
+
+  /* Gold redefined to Cream to match theme */
+  --gold: #ededd5;
+  --gold-deep: #d5d5be;
+  --gold-dim: rgba(237, 237, 213, 0.18);
+  --gold-glow: rgba(237, 237, 213, 0.35);
 
   /* Text */
-  --text-dark: #1a1208;
-  --text-body: #3d2b1f;
-  --text-cream: #f5edd8;
-  --text-muted: rgba(61, 43, 31, 0.52);
-  --muted: rgba(61, 43, 31, 0.52);
+  --text-dark: #ededd5;
+  --text-body: #ededd5;
+  --text-cream: #ededd5;
+  --text-muted: rgba(237, 237, 213, 0.52);
+  --muted: rgba(237, 237, 213, 0.52);
 
   /* UI */
-  --border: rgba(201, 160, 106, 0.22);
+  --border: rgba(237, 237, 213, 0.22);
   --radius: 12px;
   --radius-lg: 20px;
-  --shadow: 0 4px 32px rgba(122, 2, 50, 0.18);
+  --shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
   --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Legacy aliases kept for existing components */
-  --bg: var(--cream);
-  --surface: var(--cream-dark);
-  --surface2: #e8d9be;
-  --surface3: #dececb;
-  --heading: var(--royal-blue);
-  --white: var(--text-body);
-  --maroon: #7a1e2e;
-  --maroon-dim: rgba(122, 30, 46, 0.08);
+  --bg: transparent;
+  --surface: rgba(237, 237, 213, 0.05);
+  --surface2: rgba(237, 237, 213, 0.1);
+  --surface3: rgba(237, 237, 213, 0.2);
+  --heading: #ededd5;
+  --white: #ededd5;
+  --maroon: #45a287;
+  --maroon-dim: rgba(69, 162, 135, 0.08);
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: #000; /* Fallback */
 }
 
 body {
-  background: var(--cream);
+  background: #45a287;
   color: var(--text-body);
-  font-family: "Inter", sans-serif;
+  font-family: "CustomTextFont", sans-serif;
   font-size: 15px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   overflow-x: hidden;
-}
-
-/* Subtle warm texture */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(
-      ellipse 70% 50% at 20% 20%,
-      rgba(27, 58, 107, 0.04) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 60% 40% at 80% 75%,
-      rgba(61, 107, 92, 0.04) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse 45% 35% at 55% 48%,
-      rgba(201, 160, 106, 0.04) 0%,
-      transparent 55%
-    );
 }
 
 #root {
@@ -103,16 +84,16 @@ body::before {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--cream-dark);
+  background: rgba(0,0,0,0.2);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--gold);
+  background: #45a287;
   border-radius: 3px;
 }
 
 /* ── UTILITIES ─────────────────────────────────────────────── */
 .serif {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "CustomTextFont", sans-serif;
 }
 .gold {
   color: var(--gold);
@@ -132,6 +113,7 @@ button {
   border: none;
   outline: none;
   background: none;
+  font-family: "CustomTextFont", sans-serif;
 }
 img {
   display: block;
@@ -253,9 +235,9 @@ a {
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--surface2) 25%,
-    var(--surface3) 50%,
-    var(--surface2) 75%
+    rgba(237, 237, 213, 0.1) 25%,
+    rgba(237, 237, 213, 0.2) 50%,
+    rgba(237, 237, 213, 0.1) 75%
   );
   background-size: 600px 100%;
   animation: shimmer 1.6s infinite linear;

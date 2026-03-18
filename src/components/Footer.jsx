@@ -1,32 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './Footer.module.css';
 
-/* ──── Night Palace Silhouette ──────────────────────────── */
-const NightPalace = () => (
-  <svg viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" className={styles.nightPalace} preserveAspectRatio="xMidYMax slice">
-    <g fill="#F5EDD8" opacity="0.07">
-      <rect x="560" y="50" width="320" height="150" />
-      <ellipse cx="720" cy="50" rx="80" ry="65" />
-      <polygon points="720,0 730,50 710,50" />
-      <rect x="400" y="80" width="180" height="120" />
-      <ellipse cx="490" cy="80" rx="50" ry="42" />
-      <polygon points="490,38 497,80 483,80" />
-      <rect x="860" y="80" width="180" height="120" />
-      <ellipse cx="950" cy="80" rx="50" ry="42" />
-      <polygon points="950,38 957,80 943,80" />
-      <rect x="250" y="110" width="100" height="90" />
-      <ellipse cx="300" cy="110" rx="35" ry="30" />
-      <rect x="1090" y="110" width="100" height="90" />
-      <ellipse cx="1140" cy="110" rx="35" ry="30" />
-      <rect x="0" y="150" width="270" height="50" />
-      <rect x="1170" y="150" width="270" height="50" />
-      <rect x="0" y="185" width="1440" height="15" />
-    </g>
-    {/* Moonlight reflection */}
-    <ellipse cx="720" cy="196" rx="180" ry="8" fill="#C9A06A" opacity="0.08" />
-  </svg>
-);
-
 /* ──── Countdown Timer Hook ─────────────────────────────── */
 function calcTime(targetDate) {
   const diff = new Date(targetDate).getTime() - Date.now();
@@ -82,9 +56,6 @@ export default function Footer({ photographer, gallery }) {
           }} />
         ))}
       </div>
-
-      {/* Night palace silhouette */}
-      <NightPalace />
 
       {/* Content */}
       <div className={styles.content}>

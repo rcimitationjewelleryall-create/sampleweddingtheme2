@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 0 24px 0;
+  padding: 24px 24px 0;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -23,23 +23,23 @@
   align-items: center;
   gap: 8px;
   padding: 12px 28px;
-  background: var(--royal-blue);
-  border: 1.5px solid rgba(201,160,106,0.4);
+  background: #45a287;
+  border: 1.5px solid rgba(237, 237, 213, 0.3);
   border-radius: 100px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 600;
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
   letter-spacing: 0.04em;
-  color: var(--cream);
+  color: #ededd5;
   cursor: pointer;
   transition: all 0.28s;
-  box-shadow: 0 4px 20px rgba(122,2,50,0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
-.uploadBtn span { font-size: 18px; }
+.uploadBtn span { font-size: 20px; }
 .uploadBtn:hover {
-  background: #1E4480;
-  border-color: var(--gold);
-  box-shadow: 0 6px 28px rgba(122,2,50,0.3);
+  background: #268f74;
+  border-color: #ededd5;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
 }
 
@@ -48,9 +48,9 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 14px;
-  color: var(--royal-blue);
-  font-weight: 500;
+  font-size: 16px;
+  color: #ededd5;
+  font-family: 'CustomTextFont', sans-serif;
   letter-spacing: 0.02em;
 }
 
@@ -59,8 +59,8 @@
   display: inline-block;
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(122,2,50,0.2);
-  border-top-color: var(--royal-blue);
+  border: 2px solid rgba(237, 237, 213, 0.2);
+  border-top-color: #ededd5;
   border-radius: 50%;
   animation: spin 0.75s linear infinite;
 }
@@ -76,13 +76,13 @@
 .progressBar {
   width: 200px;
   height: 3px;
-  background: rgba(122,2,50,0.12);
+  background: rgba(237, 237, 213, 0.12);
   border-radius: 3px;
   overflow: hidden;
 }
 .progressFill {
   height: 100%;
-  background: linear-gradient(to right, var(--royal-blue), var(--gold));
+  background: #45a287;
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -101,38 +101,38 @@
   height: 44px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--gold);
-  box-shadow: 0 0 0 3px rgba(201,160,106,0.2);
+  border: 2px solid #ededd5;
+  box-shadow: 0 0 0 3px rgba(237, 237, 213, 0.2);
 }
 
 .found {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--sage);
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 18px;
+  color: #ededd5;
   letter-spacing: 0.02em;
 }
 
 .clearBtn {
   padding: 7px 18px;
-  border: 1px solid rgba(122,2,50,0.25);
+  border: 1px solid rgba(237, 237, 213, 0.25);
   border-radius: 100px;
-  font-size: 12px;
-  font-weight: 500;
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 14px;
   letter-spacing: 0.06em;
-  color: var(--royal-blue);
+  color: #ededd5;
   background: none;
   cursor: pointer;
   transition: all 0.22s;
 }
 .clearBtn:hover {
-  border-color: var(--royal-blue);
-  background: rgba(122,2,50,0.06);
+  border-color: #ededd5;
+  background: rgba(237, 237, 213, 0.06);
 }
 
 .err {
-  font-size: 13px;
-  color: #B0350E;
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 14px;
+  color: #ff6b6b;
   max-width: 340px;
   text-align: center;
   line-height: 1.5;
@@ -142,10 +142,10 @@
 
 /* Hint */
 .hint {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 15px;
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 16px;
   font-style: italic;
-  color: var(--gold-deep);
+  color: #ededd5;
   opacity: 0.75;
   letter-spacing: 0.03em;
 }

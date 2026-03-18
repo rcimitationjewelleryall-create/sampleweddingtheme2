@@ -8,7 +8,6 @@ export default function PhotographerBanner({ photographer, gallery, onYourPhotos
   const layer4Ref = useRef(null);
   const layer5Ref = useRef(null);
   const scrollBtnRef = useRef(null);
-  const rafRef = useRef(null);
 
   const groomName = gallery?.groom_name || 'Groom';
   const brideName = gallery?.bride_name || 'Bride';
@@ -22,40 +21,33 @@ export default function PhotographerBanner({ photographer, gallery, onYourPhotos
       })()
     : '';
 
-  // Parallax scroll handler
+  // Parallax scroll handler — apply transforms synchronously to avoid
+  // the 1-frame RAF delay that causes ~20-30px of "free play" on mobile
+  // where all layers scroll at the same speed before parallax kicks in.
   const handleScroll = useCallback(() => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => {
-      const scrollY = window.scrollY;
-      // Layer 2 (3.png): 20% slower
-      if (layer2Ref.current) {
-        layer2Ref.current.style.transform = `translateY(${scrollY * 0.5}px)`;
-      }
-      // Layer 3 (2.png): 35% slower
-      if (layer3Ref.current) {
-        layer3Ref.current.style.transform = `translateY(${scrollY * 0.35}px)`;
-      }
-      // Layer 4 (1.png): 50% slower
-      if (layer4Ref.current) {
-        layer4Ref.current.style.transform = `translateY(${scrollY * 0.2}px)`;
-      }
-      // Layer 5 (text): 50% slower
-      if (layer5Ref.current) {
-        layer5Ref.current.style.transform = `translateY(${scrollY * 0.5}px)`;
-      }
-      // Scroll down button: hide on scroll, show at top
-      if (scrollBtnRef.current) {
-        scrollBtnRef.current.style.opacity = scrollY === 0 ? '1' : '0';
-        scrollBtnRef.current.style.pointerEvents = scrollY === 0 ? 'auto' : 'none';
-      }
-    });
+    const scrollY = window.scrollY;
+    if (layer2Ref.current) {
+      layer2Ref.current.style.transform = `translateY(${scrollY * 0.5}px)`;
+    }
+    if (layer3Ref.current) {
+      layer3Ref.current.style.transform = `translateY(${scrollY * 0.35}px)`;
+    }
+    if (layer4Ref.current) {
+      layer4Ref.current.style.transform = `translateY(${scrollY * 0.2}px)`;
+    }
+    if (layer5Ref.current) {
+      layer5Ref.current.style.transform = `translateY(${scrollY * 0.5}px)`;
+    }
+    if (scrollBtnRef.current) {
+      scrollBtnRef.current.style.opacity = scrollY === 0 ? '1' : '0';
+      scrollBtnRef.current.style.pointerEvents = scrollY === 0 ? 'auto' : 'none';
+    }
   }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [handleScroll]);
 

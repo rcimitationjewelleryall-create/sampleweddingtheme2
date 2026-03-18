@@ -7,8 +7,11 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--cream);
-  border-bottom: 1px solid var(--border);
+  background-image: url('/Background.png');
+  background-size: 300px 296px;
+  background-repeat: repeat;
+  background-position: top left;
+  border-bottom: none;
 }
 .headerInner {
   display: flex;
@@ -25,28 +28,26 @@
   align-items: center;
   gap: 8px;
   padding: 10px 22px;
-  background: var(--royal-blue);
-  border: 1.5px solid rgba(201,160,106,0.4);
+  background: transparent;
+  border: 1px solid rgba(237, 237, 213, 0.3);
   border-radius: 100px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 15px;
-  font-weight: 600;
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 16px;
+  font-weight: normal;
   letter-spacing: 0.03em;
-  color: var(--cream);
+  color: #ededd5;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.28s cubic-bezier(0.25,0.1,0.25,1);
-  box-shadow: 0 2px 12px rgba(122,2,50,0.18);
   min-width: auto;
 }
 .backBtn svg {
-  stroke: var(--gold);
+  stroke: #ededd5;
   transition: transform 0.22s;
 }
 .backBtn:hover {
-  background: #9a0340;
-  border-color: var(--gold);
-  box-shadow: 0 6px 24px rgba(122,2,50,0.3);
+  background: rgba(237, 237, 213, 0.1);
+  border-color: #ededd5;
   transform: translateY(-2px);
 }
 .backBtn:hover svg {
@@ -61,35 +62,41 @@
   gap: 2px;
 }
 .headerLabel {
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  color: #ededd5;
+  opacity: 0.8;
 }
 .headerTitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(20px, 3.5vw, 32px);
-  font-weight: 600;
-  color: var(--royal-blue);
+  font-family: 'CustomTextFont', sans-serif;
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: normal;
+  color: #ededd5;
   letter-spacing: 0.01em;
+  margin: 0;
 }
 
 /* Ornamental line */
 .headerLine {
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  background: linear-gradient(to right, transparent, #ededd5, transparent);
   opacity: 0.35;
 }
 
 /* ── Main ── */
 .main {
-  background: var(--cream);
-  min-height: 60vh;
+  background-image: url('/Background.png');
+  background-size: 300px 296px;
+  background-repeat: repeat;
+  background-position: top left;
+  min-height: 100vh;
   padding-bottom: 32px;
 }
 
 /* ── Responsive ── */
 @media (max-width: 480px) {
   .headerInner { padding: 12px 16px; }
-  .backBtn { padding: 6px 12px; font-size: 12px; min-width: 56px; }
+  .backBtn { padding: 6px 12px; font-size: 14px; min-width: 56px; }
 }
